@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="infoMap">
+
+	<select id="selectList" resultType="ivo">
+		select * from player
+	</select>
+
+	<select id="playerRegisterReg" resultType="java.lang.Integer">
+		select max(playerId)+1
+		from player
+	</select>
+
+
+
+
+
+
+	<sql id="sch">
+		<where>
+			<if test="list.what!=null and list.what!=''">
+
+				${list.kind} like '%'||#{list.what}||'%'
+
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectListSch" resultType="ivo" parameterType="ivo">
+		select * from player
+		<include refid="sch" />
+
+	</select>
+
+
+	<sql id="sch2">
+		<!-- 반복문에서 item으로 지정한 sss 를 받아옴 -->
+		<if test="sss.what!=null and sss.what!=''">
+
+			${sss.kind} like '%'||#{sss.what}||'%' or
+		</if>
+	</sql>
+
+	<select id="selectListSchList" resultType="ivo" parameterType="ivo">
+
+		select * from player
+		<where>
+			<if test="list!=null">
+
+				<!-- 멤버변수 중 ArrayList인 list 를 각각 sss 로 받아옴 -->
+				<foreach collection="list" item="sss">
+					<!-- include 시킨 sql에서 sss를 사용하여 각 구문 생성 -->
+					<include refid="sch2" />
+				</foreach>
+
+				1!=1
+			</if>
+
+			<if test="cnt!=null and cnt!=0">
+				<if test="list!=null">
+					or
+				</if>
+			   		<![CDATA[  cnt >= #{cnt}    ]]>
+			</if>
+
+
+		</where>
+	</select>
+
+
+
+	<select id="selectDetail" resultType="ivo" parameterType="ivo">
+		select
+		* from player where playerId = #{playerId}
+	</select>
+
+	<insert id="insertPlayerStatCareer" parameterType="ivo">
+		<!-- 선수통산기록(기본정보랑동시에)입력, 선수생성만 -->
+		insert into playerStatCareer
+		(position, year, teamId, playerId,
+		playerName,
+		regDate)
+		values
+		(#{position}, #{year}, #{teamId},
+		#{playerId}, #{playerName},
+		sysdate)
+	</insert>
+
+	<insert id="insertOne" parameterType="ivo"><!-- 선수기본정보입력 -->
+		insert into player
+		(playerId, year, teamId, status, gun,
+		sysFile,
+		backNum, playerName, position,
+		playerBirth, schoolName, height,
+		weight,
+		country,
+		salary, pitchingHand, battingHand,
+		regDate ) values
+		(#{playerId}, #{year},#{teamId}, #{status}, #{gun},
+		#{sysFile},
+		#{backNum}, #{playerName}, #{position},
+		#{playerBirth}, #{schoolName},
+		#{height}, #{weight}, #{country},
+		#{salary}, #{pitchingHand},
+		#{battingHand}
+		, sysdate )
+
+	</insert>
+
+	<delete id="modifyDetail" parameterType="ivo">
+		update player set year =
+		#{year,jdbcType=VARCHAR} ,
+		teamId = #{teamId,jdbcType=VARCHAR} ,
+		status
+		= #{status,jdbcType=VARCHAR} ,
+		gun = #{gun,jdbcType=VARCHAR},
+		backNum = #{backNum,jdbcType=VARCHAR},
+		playerName = #{playerName,jdbcType=VARCHAR},
+		position =
+		#{position,jdbcType=VARCHAR},
+		height = #{height,jdbcType=VARCHAR},
+		weight = #{weight,jdbcType=VARCHAR},
+		country =
+		#{country,jdbcType=VARCHAR},
+		salary = #{salary,jdbcType=VARCHAR},
+		pitchingHand = #{pitchingHand,jdbcType=VARCHAR},
+		battingHand =
+		#{battingHand,jdbcType=VARCHAR},
+		playerPhoto =
+		#{playerPhoto},
+		sysFile = #{sysFile,jdbcType=VARCHAR},
+		regDate = sysdate
+		where playerId =
+		#{playerId}
+	</delete>
+
+
+	<!-- <insert id="insertOne" parameterType="ivo">선수기본정보입력 insert into player 
+		(playerId, teamId, status, gun, sysFile, backNum, playerName, position, playerBirth, 
+		schoolName, height, weight, country, salary, pitchingHand, battingHand, regDate 
+		) values (#{playerId}, #{teamId}, #{status}, #{gun}, #{sysFile}, #{backNum}, 
+		#{playerName}, #{position}, #{playerBirth}, #{schoolName}, #{height}, #{weight}, 
+		#{country}, #{salary}, #{pitchingHand}, #{battingHand} , sysdate ) into playerStatCareer 
+		(teamId, playerId, playerName, regDate) values (#{teamId}, #{playerId}, #{playerName}, 
+		sysdate) </insert> <insert id="insertOne" parameterType="ivo">선수기본정보입력 insert 
+		into player (playerId, salary, teamId, backNum, playerName, position, schoolName, 
+		height, weight, country, pitchingHand, battingHand, sysFile, playerBirth, 
+		regDate ) values (#{playerId}, #{salary}, #{teamId}, #{backNum}, #{playerName}, 
+		#{position}, #{schoolName}, #{height}, #{weight}, #{country}, #{pitchingHand}, 
+		#{battingHand}, #{sysFile} ,#{playerBirth}, sysdate ) </insert> <insert id="insertPlayerStatCareer" 
+		parameterType="ivo">선수통산기록(기본정보랑 동시에)입력, 선수생성만 insert into playerStatCareer 
+		(teamId, playerId, playerName, regDate) values (#{teamId}, #{playerId}, #{playerName}, 
+		sysdate),jdbcType=VARCHAR </insert> <insert id="insertOneStat" parameterType="psvo">오늘개인기록업데이트 
+		insert into playerStat (year, month, day, teamId, playerId, playerName, positionToday, 
+		g, gs, inn, tc, po, a, e, dp, ab, r, h, twoBase, thirdBase, hr, rbi, bb, 
+		so, sb, cs, w, l, hold, sv, svo, ip, pitcherH, pitcherR, pitcherHr, pitcherBb, 
+		pitcherSo, regDate) values (#{year}, #{month}, #{day}, #{teamId,jdbcType=VARCHAR}, 
+		#{playerId,jdbcType=VARCHAR}, #{playerName,jdbcType=VARCHAR}, #{positionToday}, 
+		#{g}, #{gs}, #{inn}, #{tc}, #{po}, #{a}, #{e}, #{dp}, #{ab}, #{r}, #{h}, 
+		#{twoBase}, #{thirdBase}, #{hr}, #{rbi}, #{bb}, #{so}, #{sb}, #{cs}, #{w}, 
+		#{l}, #{hold}, #{sv}, #{svo}, #{ip}, #{pitcherH}, #{pitcherR}, #{pitcherHr}, 
+		#{pitcherBb}, #{pitcherSo}, sysdate ) </insert> <insert id="insertOne" parameterType="ivo"> 
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer"> 
+		select max(id)+1 from player </selectKey> insert into player (id, gid, seq,lev, 
+		cnt, reg_date, pname, pw, title, content, upfile ) values (#{id},#{id},0,0,-1,sysdate,#{pname}, 
+		#{pw}, #{title}, #{content},#{upfile}) </insert> <select id="idPwChk" resultType="ivo" 
+		parameterType="ivo"> select * from player where id = #{id} and pw = #{pw} 
+		</select> -->
+	<update id="fileDelete" parameterType="ivo">
+		update player set sysFile
+		= null where playerId = #{playerId}
+	</update>
+	<delete id="delete" parameterType="ivo">
+		delete from player where
+		playerId = #{playerId}
+	</delete>
+	<delete id="modify" parameterType="ivo">
+		update player set playerName =
+		#{playerName} where playerId = #{playerId}
+	</delete>
+
+</mapper>

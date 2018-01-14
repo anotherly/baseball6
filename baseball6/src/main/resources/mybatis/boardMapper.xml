@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+    <update id="addcnt" parameterType="boa">
+		update baseballboard set cnt = cnt +1 where boardid = #{boardid}
+	</update>
+
+	<sql id="cate">
+   	<where>
+	   	<if test="cate2!=null and cate2!=''">
+	   			category1 = #{cate2}
+	   		
+	   	</if>
+   	</where>
+   </sql>
+   
+   <select id="selectList" resultType="boa" parameterType="boa2">
+   		select * from baseballboard <include refid="cate"/>
+   </select>
+
+	<select id="selectNotice" resultType="boa" >
+		select * from baseballboard where category1='boardinfo' order by regdate desc
+	</select>
+	<select id="selectDetail" resultType="boa" parameterType="boa">
+	select * from baseballboard where boardid = #{boardid}
+	</select> 	
+	
+	<insert id="insertOne" parameterType="boa">
+	<selectKey keyProperty="boardid" order="BEFORE" resultType="java.lang.Integer">
+	   		select max(boardid)+1 from baseballboard
+	</selectKey>
+	insert into baseballboard (cnt,
+	title, content,category1, userid, boardid, 
+	oriname, sysname,regdate,moddate, gid) values
+	 (#{cnt,jdbcType=INTEGER}, #{title},#{content}, #{category1}, #{userid,jdbcType=VARCHAR}, 
+	 #{boardid},#{oriname,jdbcType=VARCHAR},#{sysname,jdbcType=VARCHAR},sysdate,sysdate,#{boardid})
+	</insert>
+	
+	<select id="selectTotal" resultType="java.lang.Integer" parameterType="String">
+         select count(*) from baseballboard where category1 = #{category1}
+    </select>
+   
+    <select id="typelist" resultType="boa"  parameterType="boa2"  >
+         
+         <![CDATA[ select * from
+      (select rownum rnum, t1.* from 
+      (select * from baseballboard where category1 = #{cate2} order by boardid) t1)
+        where rnum >= #{startNum} and rnum<= #{endNum} ]]>
+           
+    </select>
+    <delete id="modify" parameterType="boa">
+   		update baseballboard set title = #{title,jdbcType=VARCHAR} , content = #{content,jdbcType=VARCHAR} , oriname = #{oriname,jdbcType=VARCHAR},
+   		sysname = #{sysname,jdbcType=VARCHAR} , moddate = sysdate where boardid = #{boardid}
+   </delete>
+   <update id="fileDelete" parameterType="boa">
+   		update baseballboard set sysname = null, oriname=null where boardid = #{boardid}
+   </update>
+	<delete id="boarddelete" parameterType="boa">
+   		delete from baseballboard where boardid = #{boardid} and userid = #{userid}
+   </delete>
+
+</mapper>

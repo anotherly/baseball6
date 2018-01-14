@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ticket">
+   <insert id="insertOne" parameterType="ticketinformation">
+      
+      <foreach item="item" index="index" collection="reallist" open="INSERT ALL "
+         separator=" " close="SELECT * FROM DUAL">
+         into ticket3(ticketinfo,listt,stadium,seat,line,userid,match_year,match_month,match_day,price,pay_date,paid) values (
+         #{item.ticketinfo,jdbcType=VARCHAR},#{item.listt,jdbcType=VARCHAR},#{item.stadium,jdbcType=VARCHAR},
+         #{item.seat,jdbcType=VARCHAR},#{item.line,jdbcType=VARCHAR},#{userid,jdbcType=VARCHAR},
+         #{match_year,jdbcType=INTEGER},#{match_month,jdbcType=INTEGER},#{match_day,jdbcType=INTEGER},#{item.price,jdbcType=INTEGER},sysdate,1)
+      </foreach>    
+
+   </insert>
+   <!-- <insert id="payment" parameterType="ticketReservation">
+      insert into ticketres (userid, stadium, user_name, user_phone, money) values (
+      #{userid,jdbcType=VARCHAR},#{stadium,jdbcType=VARCHAR},#{user_name,jdbcType=VARCHAR},
+      #{user_phone,jdbcType=VARCHAR},#{money,jdbcType=VARCHAR}
+      )
+   </insert> -->
+   
+   <!-- <update id="paycheck" parameterType="ticketinformation">
+      
+      <foreach item="item" index="index" collection="reallist" open="INSERT ALL "
+         separator=" " close="SELECT * FROM DUAL">
+         into ticket2(ticketinfo,listt,stadium,seat,line,paid,userid,match_year,match_month,match_day,price) values (
+         #{item.ticketinfo,jdbcType=VARCHAR},#{item.listt,jdbcType=VARCHAR},#{item.stadium,jdbcType=VARCHAR},
+         #{item.seat,jdbcType=VARCHAR},#{item.line,jdbcType=VARCHAR},0,#{userid,jdbcType=VARCHAR},
+         #{match_year,jdbcType=INTEGER},#{match_month,jdbcType=INTEGER},#{match_day,jdbcType=INTEGER},#{price,jdbcType=INTEGER})
+      </foreach>
+
+   </update> -->
+   
+   <update id="cancel" parameterType="ticketinformation">
+      update ticket3 set paid = 0, refund_date = sysdate, refund_price = #{refund_price,jdbcType=INTEGER}
+      where  ticketinfo = #{ticketinfo} 
+      and match_day = #{match_day}
+   </update>
+   
+<!--    <select id="selectform" resultType="ticketinformation">
+      select * from ticket2 where paid = 1 and stadium = #{stadium,jdbcType=VARCHAR} and 
+      year = #{year,jdbcType=VARCHAR} and month = #{month,jdbcType=VARCHAR} and day = #{day,jdbcType=VARCHAR}
+   </select>
+ -->   
+    <select id="selectform" resultType="ticketinformation">
+      select * from ticket3 where paid = 1 
+   </select>
+   
+    <select id="selectList" parameterType="mem" resultType="ticketinformation">
+      select * from ticket3 where userid = #{userid,jdbcType=VARCHAR} ORDER BY PAY_DATE DESC
+   </select>
+
+</mapper>
