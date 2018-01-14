@@ -42,6 +42,7 @@ font-family: 'Jeju Myeongjo', serif;
 </style>
 
 <script>
+window.resizeTo(1366,544); 
 	
 	function count_ck(obj) {
 		var chkbox = document.getElementsByName("chk");

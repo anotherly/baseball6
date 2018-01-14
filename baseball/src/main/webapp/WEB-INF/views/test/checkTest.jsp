@@ -46,8 +46,10 @@ font-family:'Jeju Myeongjo', serif;
 hr { border-top:1px solid #9C9C9C; border-bottom:1px solid #F6F6F6; }
 </style>
 <script type="text/javascript">
- 	function pay(){
-		var newwin = window.open('_blank','winname','width=500, height=300');
+		window.resizeTo(826,386); 
+
+		function pay(){
+		var newwin = window.open('_blank','winname','width=565, height=300');
 		var fr = document.frm;
 		fr.action = "card";
 		frm.target= 'winname';
@@ -56,6 +58,7 @@ hr { border-top:1px solid #9C9C9C; border-bottom:1px solid #F6F6F6; }
 		
 		}; 
 
+		
 </script>
 </head>
 <body>

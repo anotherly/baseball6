@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
-<body onresize="parent.resizeTo(800,600)" onload="parent.resizeTo(800,600)">
+<body onresize="parent.resizeTo(564,300)" onload="parent.resizeTo(564,300)">
 	예매자 확인
     	<form action="card2" method="post">
      	<input type="hidden" value="${param.userid }" name="userid"/>
