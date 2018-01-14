@@ -164,16 +164,16 @@
 					<td>${vo.channel}</td>
 					<c:choose>
 						<c:when test="${tic[0] eq vo.day}">
-							<td><a
-								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+							<td><a 
+								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 						</c:when>
 						<c:when test="${tic[0]+1 eq vo.day}">
 							<td><a
-								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 						</c:when>
 						<c:when test="${tic[0]+2 eq vo.day}">
-							<td><a
-								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+							<td><a 
+								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 						</c:when>
 						<c:when test="${tic[0] ge vo.day}">
 							<td><a
@@ -323,15 +323,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }"  onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -475,15 +475,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -628,15 +628,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -781,15 +781,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
 								</c:when>
 							</c:choose>
 
