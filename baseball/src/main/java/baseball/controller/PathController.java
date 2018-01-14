@@ -236,9 +236,7 @@ public class PathController {
 
 		subMenu.get("board").add(new Menu("boardinfo", "공지사항", "list"));
 		subMenu.get("board").add(new Menu("boardfree", "자유게시판", "list"));
-		subMenu.get("board").add(new Menu("boardqna", "질문과 답변", "list"));
-		subMenu.get("board").add(new Menu("boardfnq", "자주뭍는질문", "list"));
-
+		subMenu.get("board").add(new Menu("boardfnq", "자주묻는질문", "list"));
 		data.setSubMenu(subMenu.get(data.getCate1()));
 
 	}
