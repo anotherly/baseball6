@@ -87,7 +87,10 @@ background-color: silver;
 				</c:if></td>
 		<tr>
 		<c:choose>
-		<c:when test="${loginVo.grade eq 'user' ||loginVo.grade eq 'admin'}">
+		<c:when test="${data.dd.get(0).category1 eq 'boardinfo' && loginVo.grade eq 'admin' }">
+			<td colspan="5" align="center"><a href="insertForm"> 글쓰기</a></td>
+		</c:when>
+		<c:when test="${data.dd.get(0).category1 ne 'boardinfo'  &&  (loginVo.grade eq 'user' ||loginVo.grade eq 'admin')}">
 			<td colspan="5" align="center"><a href="insertForm"> 글쓰기</a></td>
 			</c:when>
 			<c:otherwise>
