@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="homeMap">
+
+	<select id="list" resultType="hvo" parameterType="hvo">
+		select * from
+		playerStat
+	</select>
+
+	<select id="listGame" resultType="hvo">
+		 select * from GAMESCORE
+		<!--select * from schedule order by day ASC -->
+	</select>
+
+	<select id="listTeamRanking" resultType="hvo">
+		select * from TEAMVIEW
+	</select>
+
+	<select id="listPlayerRankingAvg" resultType="hvo">
+		SELECT playerName, avg, year
+		FROM
+		(
+		SELECT avg, playerName, year
+		FROM
+		playerstatcareer
+		ORDER BY avg DESC
+		)
+		WHERE year = 2018 and rownum <![CDATA[<= 3]]>
+	</select>
+	<select id="listPlayerRankingHr" resultType="hvo">
+		SELECT playerName, hr, year
+		FROM
+		(
+		SELECT HR, playerName, year
+		FROM
+		playerstatcareer
+		ORDER BY HR DESC
+		)
+		WHERE year = 2018 and rownum <![CDATA[<= 3]]>
+
+	</select>
+	<select id="listPlayerRankingRbi" resultType="hvo">
+		SELECT playerName, rbi, year
+		FROM
+		(
+		SELECT rbi, playerName, year
+		FROM
+		playerstatcareer
+		ORDER BY rbi DESC
+		)
+		WHERE year = 2018 and rownum <![CDATA[<= 3]]>
+
+	</select>
+
+	<select id="listPlayerRankingEra" resultType="hvo">
+		SELECT playerName, ERA, year
+		FROM
+		(
+		SELECT ERA, playerName, year
+		FROM
+		playerstatcareer
+		ORDER BY ERA ASC
+		)
+		WHERE year = 2018 and rownum <![CDATA[<= 3]]>
+
+	</select>
+
+	<select id="listPlayerRankingW" resultType="hvo">
+		SELECT playerName, w, year
+		FROM
+		(
+		SELECT w, playerName, year
+		FROM
+		playerstatcareer
+		ORDER BY w DESC
+		)
+		WHERE year = 2018 and rownum <![CDATA[<= 3]]>
+
+	</select>
+
+	<select id="listPlayerRankingPso" resultType="hvo">
+		SELECT playerName, pitcherSo, year
+		FROM
+		(
+		SELECT pitcherSo, playerName,
+		year
+		FROM playerstatcareer
+		ORDER BY pitcherSo DESC
+		)
+		WHERE year = 2018 and
+		rownum <![CDATA[<= 3]]>
+
+	</select>
+
+	<select id="gameRegisterViewPlayerStatHome" resultType="hvo"
+		parameterType="hvo">
+		select sum(r) as r, sum(sv) as sv, sum(l) as l, sum(w)
+		as w, sum(h) as h, sum(hr) as hr, sum(sb) as sb, sum(so) as so,
+		sum(dp) as dp, sum(e) as e from playerStat where game_num =
+		#{game_num} and teamId = #{home}
+	</select>
+
+	<select id="gameRegisterViewPlayerStatAway" resultType="hvo"
+		parameterType="hvo">
+		select sum(r) as r, sum(sv) as sv, sum(l) as l, sum(w)
+		as w, sum(h) as h, sum(hr) as hr, sum(sb) as sb, sum(so) as so,
+		sum(dp) as dp, sum(e) as e from playerStat where game_num =
+		#{game_num} and teamId = #{away}
+	</select>
+
+	<select id="schedulehome" resultType="hvo" parameterType="hvo">
+		select * from schedulehome where game_num = #{game_num} and teamId =
+		#{home}
+
+	</select>
+
+	<select id="scheduleaway" resultType="hvo" parameterType="hvo">
+		select * from scheduleaway where game_num = #{game_num} and teamId =
+		#{away}
+	</select>
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="playerMap">
+
+	<select id="selectList" resultType="pscvo" parameterType="pscvo">
+
+		select * from playerStatCareer
+
+		<if test="year!=null">
+			<where>
+				year = #{year} and position = 'p, pitcher'
+			</where>
+		</if>
+
+
+		order by era ASC
+	</select>
+	<select id="listBat" resultType="pscvo" parameterType="pscvo">
+
+		select * from playerStatCareer
+
+		<if test="year!=null">
+			<where>
+				year = #{year} and position = 'c, catcher' or
+									position = '1b, infielder' or
+									position = '2b, infielder' or
+									position = '3b, infielder' or
+									position = 'ss, infielder' or
+									position = 'lf, outfielder' or
+									position = 'cf, outfielder' or
+									position = 'rf, outfielder'
+			</where>
+		</if>
+
+
+		order by avg desc
+	</select>
+
+	<select id="listDef" resultType="pscvo" parameterType="pscvo">
+
+		select * from playerStatCareer
+
+		<if test="year!=null">
+			<where>
+				year = #{year} and position NOT LIKE 'p, pitcher'
+			</where>
+		</if>
+
+
+		order by fpct DESC
+	</select>
+
+
+	<!-- <select id="selectList" resultType="pscvo"> select * from playerStatCareer 
+		where year = 2018 and juPosition LIKE '%p%' </select> -->
+
+	<select id="teamStatList" resultType="pscvo" parameterType="java.lang.Integer">
+		select * from teamstat where year = #{yy}
+
+	</select>
+
+
+
+
+	<select id="selectTeamList" resultType="pivo">
+		select teamId from player
+	</select>
+
+	<select id="playerRegister" resultType="pivo">
+		select max(playerId)+1
+		from player
+	</select>
+
+	<select id="stat_num" resultType="java.lang.Integer">
+		select max(statnum)+1 from
+		playerStat
+	</select>
+
+	<select id="selectDetail" resultType="pscvo" parameterType="pscvo">
+		select * from player where playerId = #{playerId}
+	</select>
+
+	<!-- <select id="selectViewTodayStat" resultType="pscvo"> select * from 
+		playerStat where game_num = #{game_num} </select> -->
+
+	<select id="selectViewTodayStat" resultType="pscvo"
+		parameterType="pscvo">
+		select * from playerStat where game_num = #{game_num}
+	</select>
+
+
+
+
+
+
+	<insert id="insertOneStat" parameterType="pscvo"><!-- 오늘개인기록업데이트 -->
+		insert into playerStat
+		(game_num, statnum, year, month, day, teamId,
+		playerId,
+		playerName, positionToday,
+		g, gs, inn, tc, po, a, e, dp,
+		ab, r,
+		h,
+		twoBase, thirdBase, hr, rbi, bb, so, sb, cs,
+		w, l, hold, sv, svo, ip,
+		pitcherH, pitcherR,
+		pitcherHr, pitcherBb, pitcherSo, regDate) values
+		(#{game_num}, #{statnum}, #{year}, #{month}, #{day},
+		#{teamId},
+		#{playerId}, #{playerName},
+		#{positionToday}, #{g}, #{gs},
+		#{inn},
+		#{tc}, #{po}, #{a},
+		#{e}, #{dp}, #{ab}, #{r},
+		#{h}, #{twoBase},
+		#{thirdBase},
+		#{hr}, #{rbi}, #{bb}, #{so},
+		#{sb}, #{cs}, #{w}, #{l},
+		#{hold}, #{sv}, #{svo}, #{ip},
+		#{pitcherH}, #{pitcherR}, #{pitcherHr},
+		#{pitcherBb},
+		#{pitcherSo}, sysdate )
+
+	</insert>
+
+	<update id="careerUpdate" parameterType="pscvo">
+		merge /*+ USE_HASH(A
+		B)*/ into playerstatcareer A using (select DISTINCT *
+		from PLAYERSTAT
+		where playerid = #{playerId} and year = #{year} and
+		complete = 'n' )B
+		on ( A.year = b.year and a.playerid = b.playerid)
+		when matched then
+		update set a.er = a.er + b.er, A.g = b.g + a.g, a.gs
+		= a.gs + b.gs,
+		a.inn = a.inn + b.inn, a.tc = a.tc + b.tc, a.po = a.po
+		+ b.po, a.a =
+		a.a + b.a, a.e = a.e + b.e, a.dp = a.dp + b.dp, a.rf =
+		a.rf + b.rf,
+		a.ab = a.ab + b.ab, a.r = a.r + b.r, a.h = a.h + b.h,
+		a.twobase =
+		a.twobase + b.twobase, a.thirdbase = a.thirdbase +
+		b.thirdbase, a.hr =
+		a.hr + b.hr, a.rbi = a.rbi + b.rbi, a.bb = a.bb +
+		b.bb, a.so = a.so +
+		b.so, a.sb = a.sb + b.sb, a.cs = a.cs + b.cs,
+		a.ops = a.obp + a.slg,
+		a.w = a.w + b.w, a.l = a.l + b.l, a.hold =
+		a.hold + b.hold, a.sv = a.sv
+		+ b.sv, a.svo = a.svo + b.svo, a.ip =
+		a.ip + b.ip, a.pitcherH =
+		a.pitcherH + b.pitcherH, a.pitcherR =
+		a.pitcherR + b.pitcherR,
+		a.pitcherhr = a.pitcherhr + b.pitcherhr,
+		a.pitcherbb = a.pitcherbb +
+		b.pitcherbb, a.pitcherso = a.pitcherso +
+		b.pitcherso, a.pitcheravg =
+		NVL(a.h / DECODE((a.ab - a.bb), 0, NULL,
+		(a.ab - a.bb)), 0), a.whip =
+		NVL((a.h + a.bb) / DECODE(a.inn, 0, NULL,
+		a.inn), 0), a.fpct =
+		NVL((A.PO + A.A) / DECODE((A.PO + A.A + A.E), 0,
+		NULL, (A.PO + A.A +
+		A.E)), 0), a.era = NVL((a.er * 9) / DECODE(a.inn,
+		0, NULL, a.inn), 0),
+		a.avg = NVL(a.h / DECODE((a.ab-a.bb), 0, NULL,
+		(a.ab-a.bb)), 0), a.obp
+		= NVL((a.h + a.bb) / DECODE(a.ab, 0, NULL,
+		a.ab), 0), a.slg = NVL((a.h
+		+ a.twobase + a.thirdbase + a.hr) /
+		DECODE((a.ab-a.bb), 0, NULL,
+		(a.ab-a.bb)), 0)
+
+	</update>
+
+	<update id="completeUpdate" parameterType="pscvo">
+		update playerstat set
+		complete = 'y' where playerId = #{playerId} and
+		complete = 'n'
+	</update>
+	
+	
+	<update id="gameResComplete" parameterType="pscvo">
+		update schedule set
+		home_score = #{r} where 
+		game_num = #{game_num} and home = #{teamId}
+		
+	</update>
+	
+		<update id="delete" parameterType="pscvo">
+		merge /*+ USE_HASH(A
+		B)*/ into playerstatcareer A using (select DISTINCT *
+		from PLAYERSTAT
+		where playerid = #{playerId} and year = #{year} and
+		complete = 'n' )B
+		on ( A.year = b.year and a.playerid = b.playerid)
+		when matched then
+		update set a.er = a.er + b.er, A.g = b.g + a.g, a.gs
+		= a.gs + b.gs,
+		a.inn = a.inn + b.inn, a.tc = a.tc + b.tc, a.po = a.po
+		+ b.po, a.a =
+		a.a + b.a, a.e = a.e + b.e, a.dp = a.dp + b.dp, a.rf =
+		a.rf + b.rf,
+		a.ab = a.ab + b.ab, a.r = a.r + b.r, a.h = a.h + b.h,
+		a.twobase =
+		a.twobase + b.twobase, a.thirdbase = a.thirdbase +
+		b.thirdbase, a.hr =
+		a.hr + b.hr, a.rbi = a.rbi + b.rbi, a.bb = a.bb +
+		b.bb, a.so = a.so +
+		b.so, a.sb = a.sb + b.sb, a.cs = a.cs + b.cs,
+		a.ops = a.obp + a.slg,
+		a.w = a.w + b.w, a.l = a.l + b.l, a.hold =
+		a.hold + b.hold, a.sv = a.sv
+		+ b.sv, a.svo = a.svo + b.svo, a.ip =
+		a.ip + b.ip, a.pitcherH =
+		a.pitcherH + b.pitcherH, a.pitcherR =
+		a.pitcherR + b.pitcherR,
+		a.pitcherhr = a.pitcherhr + b.pitcherhr,
+		a.pitcherbb = a.pitcherbb +
+		b.pitcherbb, a.pitcherso = a.pitcherso +
+		b.pitcherso, a.pitcheravg =
+		NVL(a.h / DECODE((a.ab - a.bb), 0, NULL,
+		(a.ab - a.bb)), 0), a.whip =
+		NVL((a.h + a.bb) / DECODE(a.inn, 0, NULL,
+		a.inn), 0), a.fpct =
+		NVL((A.PO + A.A) / DECODE((A.PO + A.A + A.E), 0,
+		NULL, (A.PO + A.A +
+		A.E)), 0), a.era = NVL((a.er * 9) / DECODE(a.inn,
+		0, NULL, a.inn), 0),
+		a.avg = NVL(a.h / DECODE((a.ab-a.bb), 0, NULL,
+		(a.ab-a.bb)), 0), a.obp
+		= NVL((a.h + a.bb) / DECODE(a.ab, 0, NULL,
+		a.ab), 0), a.slg = NVL((a.h
+		+ a.twobase + a.thirdbase + a.hr) /
+		DECODE((a.ab-a.bb), 0, NULL,
+		(a.ab-a.bb)), 0)
+
+	</update>
+
+
+</mapper>

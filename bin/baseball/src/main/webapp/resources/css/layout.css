@@ -1,0 +1,61 @@
+@charset "EUC-KR";
+
+.notnull {color:#e60000;}
+.test .notnull {color:#e60000;}
+/* .test span {color:blue; font-size: 90px;} */
+
+
+/*
+
+important!
+
+#id
+
+.class
+
+¿ä¼Ò
+
+div
+p
+a
+
+input[type="text"]
+input[type="checkbox"]
+input[type="checkbox"].checked 
+
+
+
+div div div
+
+<div>
+	<div>
+	<div>¾ê</div>
+	</div>
+</div>
+
+div > div + div
+
+<div>
+	<div>
+		<div><div>
+	</div>
+	<div>¾ê</div>
+</div>
+
+div > div:first-child
+
+
+<div>
+	<div>¾ê</div>
+	<div>
+		<div><div>
+	</div>
+</div>
+
+
+
+
+
+
+
+*/
