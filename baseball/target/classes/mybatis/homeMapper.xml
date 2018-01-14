@@ -4,14 +4,15 @@ PUBLIC "//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="homeMap">
 
-	<select id="list" resultType="hvo" parameterType="hvo">
-		select * from
-		playerStat
-	</select>
+	
 
 	<select id="listGame" resultType="hvo">
-		 select * from GAMESCORE
+		select * from schedule
 		<!--select * from schedule order by day ASC -->
+	</select>
+
+	<select id="gamescore" resultType="hvo">
+		select * from gamescore
 	</select>
 
 	<select id="listTeamRanking" resultType="hvo">
@@ -110,7 +111,7 @@ PUBLIC "//mybatis.org/DTD Mapper 3.0//EN"
 		#{game_num} and teamId = #{away}
 	</select>
 
-	<select id="schedulehome" resultType="hvo" parameterType="hvo">
+	<!-- <select id="schedulehome" resultType="hvo" parameterType="hvo">
 		select * from schedulehome where game_num = #{game_num} and teamId =
 		#{home}
 
@@ -119,5 +120,5 @@ PUBLIC "//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="scheduleaway" resultType="hvo" parameterType="hvo">
 		select * from scheduleaway where game_num = #{game_num} and teamId =
 		#{away}
-	</select>
+	</select> -->
 </mapper>

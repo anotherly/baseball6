@@ -10,7 +10,10 @@
 </head>
 <body>
 
-	<table border="1">
+	<table border="1"
+	style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+	 bordercolor="silver">
 		<tr>
 			<td>팀 번호</td>
 			<td>팀 이름</td>

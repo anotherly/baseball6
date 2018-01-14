@@ -5,7 +5,7 @@
 
 
 
-<table style="background-color: #ffa" width="100%">
+<table width="100%"><!-- style="background-color: #ffa" -->
 
 
 	<tr>

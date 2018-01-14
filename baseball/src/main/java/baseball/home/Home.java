@@ -38,7 +38,9 @@ public class Home implements SubControll {
 	void list() {
 		System.out.println("홈 패키지의 홈 클래스의 리스트 메소드");
 		
-		data.setHome1(hRep.list(hvo));
+		
+		
+		//data.setHome10(hRep.gamescore());
 		data.setHome9(hRep.listGame());
 		data.setHome2(hRep.listPlayerRankingAvg());
 		data.setHome3(hRep.listPlayerRankingEra());
@@ -47,6 +49,7 @@ public class Home implements SubControll {
 		data.setHome6(hRep.listPlayerRankingRbi());
 		data.setHome7(hRep.listPlayerRankingW());
 		data.setHome8(hRep.listTeamRanking());
+		
 		
 
 	}

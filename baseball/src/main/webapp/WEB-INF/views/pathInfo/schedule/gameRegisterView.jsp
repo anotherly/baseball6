@@ -143,7 +143,16 @@
 				
 				</c:when>
 						</c:choose></strong></td>
-				<td><strong>${data.dd3.r }:${data.dd2.r }</strong></td>
+				<td><strong>${data.dd3.r }
+				<c:choose>
+				<c:when test="${data.dd3.r ne null}">
+				:
+				</c:when>
+				<c:otherwise>
+				경기전
+				</c:otherwise>
+				</c:choose>
+				${data.dd2.r }</strong></td>
 				<td><strong> <c:choose>
 							<c:when test="${data.dd5.w eq 1 }">
 								<strong> 승리투수 : ${data.dd5.playerName } </strong>

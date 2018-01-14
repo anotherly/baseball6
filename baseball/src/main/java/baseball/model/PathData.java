@@ -16,7 +16,7 @@ public class PathData {
    String cate1, cate2, service, path, serviceTemp, cate1Temp;
 
    Object dd, dd2, dd3, dd4,dd5, 
-   home1, home2, home3, home4, home5, home6, home7, home8, home9;
+   home1, home2, home3, home4, home5, home6, home7, home8, home9, home10;
 
    ArrayList<Menu> topMenu, subMenu, topMenu2, subMenu2, loginMenu, managerMenu;
 
@@ -33,7 +33,15 @@ public class PathData {
    
    
    
-   public Object getDd5() {
+   public Object getHome10() {
+	return home10;
+}
+
+public void setHome10(Object home10) {
+	this.home10 = home10;
+}
+
+public Object getDd5() {
       return dd5;
    }
 

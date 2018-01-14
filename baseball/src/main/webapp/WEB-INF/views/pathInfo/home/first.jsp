@@ -8,16 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="" border=1>
+	<form action="" border=1 bordercolor="white">
 
-		<table align="center">
+		<table align="center" >
 			<tr align="left">
 				<!-- 경기결과↓↓↓↓↓ -->
-				<td colspan="2">
-					<table width=100% height=100% border=2 cellspacing=0 align="center">
+				<td colspan="2" >
+					<table width=100% height=100% border=2 cellspacing=0 align="center" bordercolor="silver">
 						<tr>
 
-							<td colspan="2" align="center">.........경기결과</td>
+							<td colspan="2" align="center"
+							style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+							><strong><span style="font-size: 16pt"> 
+							경기결과</span></strong></td>
 						</tr>
 
 						<tr>
@@ -25,49 +29,51 @@
 							<%-- <c:set var="tic2" value="${data.dd4}" /> --%>
 
 							<!-- 날짜 -->
-							<td colspan="1" align="center">${tic[1]}</td>
+							<td colspan="1" align="center"
+							style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;"
+							><span style="font-size: 13pt">${tic[1]}</span></td>
 						</tr>
 
 
-						<c:forEach items="${data.home9 }" var="vo">
+						<c:forEach items="${data.home10 }" var="vo">
 
 
 							<c:choose>
-								<c:when test="${tic[3] eq vo.year+vo.month+vo.day}">
+								<c:when test="${tic[4] eq vo.year && tic[5] eq vo.month && tic[7] eq vo.day}">
 									<tr>
 
 										<td align="center">
 											<c:choose>
 													<c:when test="${vo.away eq 'doosan'}">
 														<img src="../../../resources/teamPhoto/emblem_OB.png">
-														<br>두산 베어스</c:when>
+														두산 베어스</c:when>
 													<c:when test="${vo.away eq 'kia'}">
 														<img src="../../../resources/teamPhoto/emblem_HT.png">
-														<br>KIA 타이거즈</c:when>
+														KIA 타이거즈</c:when>
 													<c:when test="${vo.away eq 'lg'}">
 														<img src="../../../resources/teamPhoto/emblem_LG.png">
-														<br>LG 트윈스</c:when>
+														LG 트윈스</c:when>
 													<c:when test="${vo.away eq 'hanhwa'}">
 														<img src="../../../resources/teamPhoto/emblem_HH.png">
-														<br>한화 이글스</c:when>
+														한화 이글스</c:when>
 													<c:when test="${vo.away eq 'lotte'}">
 														<img src="../../../resources/teamPhoto/emblem_LT.png">
-														<br>롯데 자이언츠</c:when>
+														롯데 자이언츠</c:when>
 													<c:when test="${vo.away eq 'nexen'}">
 														<img src="../../../resources/teamPhoto/emblem_WO.png">
-														<br>넥센 히어로즈</c:when>
+														넥센 히어로즈</c:when>
 													<c:when test="${vo.away eq 'sk'}">
 														<img src="../../../resources/teamPhoto/emblem_SK.png">
-														<br>SK 와이번스</c:when>
+														SK 와이번스</c:when>
 													<c:when test="${vo.away eq 'kt'}">
 														<img src="../../../resources/teamPhoto/emblem_KT.png">
-														<br>KT 위즈</c:when>
+														KT 위즈</c:when>
 													<c:when test="${vo.away eq 'samsung'}">
 														<img src="../../../resources/teamPhoto/emblem_SS.png">
-														<br>삼성 라이온즈</c:when>
+														삼성 라이온즈</c:when>
 													<c:when test="${vo.away eq 'nc'}">
 														<img src="../../../resources/teamPhoto/emblem_NC.png">
-														<br>NC 다이노스</c:when>
+														NC 다이노스</c:when>
 												</c:choose>
 										
 										vs
@@ -75,47 +81,83 @@
 										
 										<c:choose>
 													<c:when test="${vo.home eq 'doosan'}">
-														<img src="../../../resources/teamPhoto/emblem_OB.png">
-														<br>두산 베어스</c:when>
+														두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png">
+														</c:when>
 													<c:when test="${vo.home eq 'kia'}">
-														<img src="../../../resources/teamPhoto/emblem_HT.png">
-														<br>KIA 타이거즈</c:when>
+														KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png">
+														</c:when>
 													<c:when test="${vo.home eq 'lg'}">
-														<img src="../../../resources/teamPhoto/emblem_LG.png">
-														<br>LG 트윈스</c:when>
+														LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png">
+														</c:when>
 													<c:when test="${vo.home eq 'hanhwa'}">
-														<img src="../../../resources/teamPhoto/emblem_HH.png">
-														<br>한화 이글스</c:when>
+														한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png">
+														</c:when>
 													<c:when test="${vo.home eq 'lotte'}">
-														<img src="../../../resources/teamPhoto/emblem_LT.png">
-														<br>롯데 자이언츠</c:when>
+														롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png">
+														</c:when>
 													<c:when test="${vo.home eq 'nexen'}">
-														<img src="../../../resources/teamPhoto/emblem_WO.png">
-														<br>넥센 히어로즈</c:when>
+														넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png">
+														</c:when>
 													<c:when test="${vo.home eq 'sk'}">
-														<img src="../../../resources/teamPhoto/emblem_SK.png">
-														<br>SK 와이번스</c:when>
+														SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png">
+														</c:when>
 													<c:when test="${vo.home eq 'kt'}">
-														<img src="../../../resources/teamPhoto/emblem_KT.png">
-														<br>KT 위즈</c:when>
+														KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png">
+														</c:when>
 													<c:when test="${vo.home eq 'samsung'}">
-														<img src="../../../resources/teamPhoto/emblem_SS.png">
-														<br>삼성 라이온즈</c:when>
+														삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png">
+														</c:when>
 													<c:when test="${vo.home eq 'nc'}">
-														<img src="../../../resources/teamPhoto/emblem_NC.png">
-														<br>NC 다이노스</c:when>
-												</c:choose></td>
+														NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png">
+														</c:when>
+												</c:choose>
+												<br>
+												<a
+											href="../../../pathInfo/schedule/notice/gameRegisterView?game_num=${vo.game_num}&home=${vo.home }&away=${vo.away }">경기결과</a></td>
 									</tr>
 									<tr>
 
-										<td align="center">..........${vo.stadium}
-										${vo.home_r},${vo.away_r}
+										<td align="center">
+										<c:choose>
+							<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
+					잠실야구장
+					</c:when>
+							<c:when test="${vo.stadium eq 'kia 광주기아챔피언스필드'}">
+					광주-기아 챔피언스필드
+					</c:when>
+							<c:when test="${vo.stadium eq 'lg 잠실야구장'}">
+					잠실야구장
+					</c:when>
+							<c:when test="${vo.stadium eq 'nc 마산야구장'}">
+					마산야구장
+					</c:when>
+							<c:when test="${vo.stadium eq 'sk 인천문학야구장'}">
+					인천문학 행복드림야구장
+					</c:when>
+							<c:when test="${vo.stadium eq 'kt 수원야구장'}">
+					KT위즈파크
+					</c:when>
+							<c:when test="${vo.stadium eq 'nexen 고척스카이돔'}">
+					고척스카이돔
+					</c:when>
+							<c:when test="${vo.stadium eq 'hanhwa 대전한밭야구장'}">
+					한화생명 이글스파크
+					</c:when>
+							<c:when test="${vo.stadium eq 'samsung 라이온즈파크'}">
+					라이온즈 파크
+					</c:when>
+							<c:when test="${vo.stadium eq 'lotte 사직야구장'}">
+					사직야구장
+					</c:when>
+
+						</c:choose>
+										
+										
+										
+										${vo.home_r}${vo.away_r}
 										</td>
 									</tr>
-									<tr>
-										<td align="center"><a
-											href="../../../pathInfo/schedule/notice/gameRegisterView?game_num=${vo.game_num}&home=${vo.home }&away=${vo.away }">경기결과</a></td>
-									</tr>
+									
 								</c:when>
 
 							</c:choose>
@@ -130,11 +172,15 @@
 
 				<!-- 다음경기↓↓↓↓↓ -->
 
-				<td>
-					<table width="50%" height=100% border=2 cellspacing=0>
+				<td width="50%">
+					<table width="50" height=100% border=2 cellspacing=0 bordercolor="silver">
 						<tr>
 
-							<td colspan="3" align="center">다음 경기</td>
+							<td colspan="3" align="center"
+							style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+							><strong><span style="font-size: 16pt"> 
+							다음경기</span></strong></td>
 
 						</tr>
 
@@ -144,13 +190,16 @@
 							<tr>
 
 
+
 								<c:choose>
 
-									<c:when test="${tic[2] eq vo.year+vo.month+vo.day}">
+									<c:when test="${tic[4] eq vo.year && tic[5] eq vo.month && tic[6] eq vo.day}">
 
 										<tr>
 											<!-- 날짜 -->
-											<td colspan="3" align="center">${vo.month}월${vo.day}일
+											<td colspan="3" align="center"
+											style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;"
+											>${vo.month}월${vo.day}일
 												${vo.yoil}요일</td>
 										</tr>
 										<tr>
@@ -247,9 +296,13 @@
 
 			<tr>
 				<td align="right" align="center">
-					<table width=100% height=100% border=2 cellspacing=0 align="center">
+					<table width=100% height=100% border=2 cellspacing=0 align="center" bordercolor="silver">
 						<tr>
-							<td colspan="2" align="center">타자 TOP3</td>
+							<td colspan="2" align="center"
+							style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+							><strong><span style="font-size: 15pt"> 
+							타자TOP3</span></strong></td>
 						</tr>
 
 						<tr>
@@ -257,8 +310,8 @@
 						</tr>
 						<c:forEach items="${data.home2 }" var="vo" varStatus="no">
 							<tr>
-								<td>${vo.playerName }</td>
-								<td>${vo.avg }</td>
+								<td align="center">${vo.playerName }</td>
+								<td align="center">${vo.avg }</td>
 							</tr>
 						</c:forEach>
 						<tr>
@@ -266,8 +319,8 @@
 						</tr>
 						<c:forEach items="${data.home4 }" var="vo" varStatus="no">
 							<tr>
-								<td>${vo.playerName }</td>
-								<td>${vo.hr }</td>
+								<td align="center">${vo.playerName }</td>
+								<td align="center">${vo.hr }</td>
 							</tr>
 						</c:forEach>
 						<tr>
@@ -275,8 +328,8 @@
 						</tr>
 						<c:forEach items="${data.home6 }" var="vo" varStatus="no">
 							<tr>
-								<td>${vo.playerName }</td>
-								<td>${vo.rbi }</td>
+								<td align="center">${vo.playerName }</td>
+								<td align="center">${vo.rbi }</td>
 							</tr>
 
 						</c:forEach>
@@ -287,9 +340,13 @@
 				<!-- 투수top3↓↓↓↓↓ -->
 
 				<td align="center">
-					<table width=100% height=100% border=2 cellspacing=0>
+					<table width=100% height=100% border=2 cellspacing=0 bordercolor="silver">
 						<tr>
-							<td colspan="2" align="center">투수 TOP3</td>
+							<td colspan="2" align="center"
+							style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+							><strong><span style="font-size: 15pt"> 
+							투수TOP3</span></strong></td>
 						</tr>
 
 						<tr>
@@ -297,8 +354,8 @@
 						</tr>
 						<c:forEach items="${data.home3 }" var="vo" varStatus="no">
 							<tr>
-								<td>${vo.playerName }</td>
-								<td>${vo.era }</td>
+								<td align="center">${vo.playerName }</td>
+								<td align="center">${vo.era }</td>
 							</tr>
 						</c:forEach>
 						<tr>
@@ -306,8 +363,8 @@
 						</tr>
 						<c:forEach items="${data.home7 }" var="vo" varStatus="no">
 							<tr>
-								<td>${vo.playerName }</td>
-								<td>${vo.w }</td>
+								<td align="center">${vo.playerName }</td>
+								<td align="center">${vo.w }</td>
 							</tr>
 						</c:forEach>
 						<tr>
@@ -315,8 +372,8 @@
 						</tr>
 						<c:forEach items="${data.home5 }" var="vo" varStatus="no">
 							<tr>
-								<td>${vo.playerName }</td>
-								<td>${vo.pitcherSo }</td>
+								<td align="center">${vo.playerName }</td>
+								<td align="center">${vo.pitcherSo }</td>
 							</tr>
 
 						</c:forEach>
@@ -327,9 +384,13 @@
 				<!-- 팀순위↓↓↓↓↓ -->
 
 				<td align="left" align="center">
-					<table width="50%" height=100% border=2 cellspacing=0 align="center">
+					<table width="50" height=100% border=2 cellspacing=0 align="center" bordercolor="silver">
 						<tr>
-							<td colspan="7" align="center">TEAM RANKING</td>
+							<td colspan="7" align="center"
+							style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+							><strong><span style="font-size: 15pt"> 
+							TEAM RANKING</span></strong></td>
 						</tr>
 						<tr>
 

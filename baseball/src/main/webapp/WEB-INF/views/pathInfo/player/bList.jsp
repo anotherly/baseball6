@@ -9,9 +9,11 @@
 </head>
 <body>
 	<form action="bList" method="post">
-		<table border="">
+		<table border="" bordercolor="silver">
 			<tr>
-				<td colspan="3"><select name="year">
+				<td colspan="3"
+				style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF; border-top: 0.1px solid #FFFFFF;"
+				><select name="year">
 						<option value="2018">2018</option>
 						<option value="2017">2017</option>
 						<option value="2016">2016</option>
@@ -30,7 +32,10 @@
 						<option value="12">12</option>
 						
 				</select> --> <input type="submit" value="검색"></td>
-				<td colspan="19" align="center"><strong><span
+				<td colspan="19" align="center"
+				style="border-right: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+				><strong><span
 						style="font-size: 2em; color: green;">시즌별 타격기록</span></strong></td>
 			</tr>
 

@@ -73,17 +73,15 @@ public class ScheduleController {
 		
 				
 		ArrayList arr = new ArrayList<>();
-		arr.add(onul);
-		arr.add(tomorrow);
-		arr.add(twodays);
-		arr.add(threedays);
-		arr.add(fourdays);
-		arr.add(fivedays);
-		
-		
-		arr.add(today);
-		arr.add(yesterday);
-		arr.add(yes);
+		arr.add(onul);//0
+		arr.add(tomorrow);//1
+		arr.add(twodays);//2
+		arr.add(threedays);//3
+		arr.add(fourdays);//4
+		arr.add(fivedays);//5
+		arr.add(today);//6
+		arr.add(yesterday);//7
+		arr.add(yes);//8
 
 		System.out.println("----------------"+arr);
 		return arr;
@@ -227,8 +225,8 @@ public class ScheduleController {
 		HashMap<String, ArrayList<Menu>> subMenu = new HashMap<>();
 		subMenu.put("schedule", new ArrayList<>());
 
-		subMenu.get("schedule").add(new Menu("schedule", "시즌일정", "list?year=2018&month=1"));
-		subMenu.get("schedule").add(new Menu("schedule", "팀별일정", "teamList?year=2018&month=1"));
+		subMenu.get("schedule").add(new Menu("schedule", "시즌일정", "list?year=2018&month=3"));
+		subMenu.get("schedule").add(new Menu("schedule", "팀별일정", "teamList?year=2018&month=3"));
 		subMenu.get("schedule").add(new Menu("schedule", "경기일정등록", "gameRegister"));
 		// subMenu.get("schedule").add(new Menu("seasonSchedule", "경기정보입력",
 		// "gameInfoRegister"));

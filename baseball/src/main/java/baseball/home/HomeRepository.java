@@ -19,9 +19,9 @@ public class HomeRepository {
 	@Resource
 	SqlSessionTemplate template;
 
-	public List<HomeVo> list(HomeVo hvo) {
-		System.out.println("list");
-		return template.selectList("homeMap.list", hvo);
+	public List<HomeVo> gamescore() {//HomeVo hvo
+		System.out.println("gamescore");
+		return template.selectList("homeMap.gamescore");
 	}
 
 	public List<HomeVo> listGame() {

@@ -8,11 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border=1>
+	<table border=1 bordercolor="silver">
 		<form action="list" method="post">
 			<c:forEach begin="0" end="0" var="i">
 				<tr>
-					<td colspan="4">
+					<td colspan="7" align="center"
+					style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;"
+					><strong><span
+							style="font-size: 2em; color: green;">등록선수정보</span></strong></td>
+					<td colspan="12"
+					style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF;
+							border-top: 0.1px solid #FFFFFF;">
 						<!-- 셀렉트밸류만들기 --> <select name="list[${i }].kind">
 							<c:forEach items="${kindArr }" var="kk">
 								<c:choose>
@@ -26,13 +33,10 @@
 
 							</c:forEach>
 					</select> <input type="text" name="list[${i }].what"
-						value="${list.get(i).what}" />
-
-
-
+						value="${list.get(i).what}" /> <input type="submit" value="검색" />
+						<a href="list">초기화</a>
 					</td>
-					<td colspan="8"><input type="submit" value="검색" /> <a
-						href="list">초기화</a></td>
+
 				</tr>
 			</c:forEach>
 
@@ -65,7 +69,7 @@
 			<c:if test="${vo.lev>0 }">
 				└
 			</c:if> --%> <a href="view?playerId=${vo.playerId }">${vo.playerName}</a>
-				<%-- view?playerId=${vo.playerId } --%>
+					<%-- view?playerId=${vo.playerId } --%>
 				</td>
 				<td><c:choose>
 						<c:when test="${vo.teamId eq 'doosan'}">

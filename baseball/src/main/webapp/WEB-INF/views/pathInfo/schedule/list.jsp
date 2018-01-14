@@ -12,12 +12,18 @@
 <body>
 	<form action="list" method="post">
 		<!-- class="scroll" -->
-		<table border="1">
+		<table border="1" bordercolor="silver">
 			<!-- class="type04" -->
 
 			<tr>
-				<td colspan="1" width="190"
-					style="border-right: 0.1px solid #FFFFFF;"><select name="year">
+
+				<td colspan="5" align="center"
+					style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF; border-top: 0.1px solid #FFFFFF;"><strong><span
+						style="font-size: 2em; color: green;">2018시즌 경기일정</span></strong></td>
+
+				<td colspan="3" width="190"
+					style="border-right: 0.1px solid #FFFFFF; border-left: 0.1px solid #FFFFFF; border-top: 0.1px solid #FFFFFF;"><select
+					name="year">
 						<option value="2018">2018</option>
 						<option value="2017">2017</option>
 						<option value="2016">2016</option>
@@ -36,8 +42,6 @@
 						<option value="12">12</option>
 
 				</select> <input type="submit" value="검색" /></td>
-				<td colspan="7" align="center"><strong><span
-						style="font-size: 2em; color: green;">2018시즌 경기일정</span></strong></td>
 			</tr>
 			<tr align="center">
 
@@ -56,7 +60,7 @@
 			<c:set var="tic" value="${ticketOk}" />
 			<c:forEach items="${data.dd }" var="vo">
 				<tr align="center">
-					<td>${vo.year}년${vo.month}월${vo.day}일 ${vo.yoil}요일<input
+					<td>${vo.year}년${vo.month}월${vo.day}일${vo.yoil}요일<input
 						type="hidden" value="${vo.game_num}"></td>
 					<td><c:choose>
 							<c:when test="${vo.away eq 'doosan'}">
@@ -103,29 +107,37 @@
 									width="40">
 							</c:when>
 							<c:when test="${vo.home eq 'lg'}">
-								LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png" width="40">
-								</c:when>
+								LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'hanhwa'}">
-								한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png" width="40">
-								</c:when>
+								한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'lotte'}">
-								롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png" width="40">
-								</c:when>
+								롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'nexen'}">
-								넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png" width="40">
-								</c:when>
+								넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'sk'}">
-								SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png" width="40">
-								</c:when>
+								SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'kt'}">
-								KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png" width="40">
-								</c:when>
+								KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'samsung'}">
-								삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png" width="40">
-								</c:when>
+								삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
+									width="40">
+							</c:when>
 							<c:when test="${vo.home eq 'nc'}">
-								NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png" width="40">
-								</c:when>
+								NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
+									width="40">
+							</c:when>
 						</c:choose></td>
 					<td><c:choose>
 							<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
@@ -163,19 +175,19 @@
 					<td>${vo.game_time}</td>
 					<td>${vo.channel}</td>
 					<c:choose>
-						<c:when test="${tic[0] eq vo.day}">
-							<td><a 
-								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
-						</c:when>
-						<c:when test="${tic[0]+1 eq vo.day}">
+						<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 							<td><a
-								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 						</c:when>
-						<c:when test="${tic[0]+2 eq vo.day}">
-							<td><a 
-								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+						<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
+							<td><a
+								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 						</c:when>
-						<c:when test="${tic[0] ge vo.day}">
+						<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
+							<td><a
+								href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
+						</c:when>
+						<c:when test="${tic[0] ge vo.year+vo.month+vo.day}">
 							<td><a
 								href="gameRegisterDetail2?game_num=${vo.game_num}&home=${vo.home }&away=${vo.away }">경기결과</a></td>
 						</c:when>
@@ -247,43 +259,43 @@
 									<c:when test="${vo.home eq 'doosan'}">
 										두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kia'}">
 										KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lg'}">
 										LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'hanhwa'}">
 										한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lotte'}">
 										롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nexen'}">
 										넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'sk'}">
 										SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kt'}">
 										KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'samsung'}">
 										삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nc'}">
 										NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
 											width="40">
-										</c:when>
+									</c:when>
 								</c:choose></td>
 							<td><c:choose>
 									<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
@@ -323,15 +335,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }"  onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -399,43 +411,43 @@
 									<c:when test="${vo.home eq 'doosan'}">
 										두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kia'}">
 										KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lg'}">
 										LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'hanhwa'}">
 										한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lotte'}">
 										롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nexen'}">
 										넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'sk'}">
 										SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kt'}">
 										KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'samsung'}">
 										삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nc'}">
 										NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
 											width="40">
-										</c:when>
+									</c:when>
 								</c:choose></td>
 							<td><c:choose>
 									<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
@@ -475,15 +487,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -552,43 +564,43 @@
 									<c:when test="${vo.home eq 'doosan'}">
 										두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kia'}">
 										KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lg'}">
 										LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'hanhwa'}">
 										한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lotte'}">
 										롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nexen'}">
 										넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'sk'}">
 										SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kt'}">
 										KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'samsung'}">
 										삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nc'}">
 										NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
 											width="40">
-										</c:when>
+									</c:when>
 								</c:choose></td>
 							<td><c:choose>
 									<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
@@ -628,15 +640,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -704,43 +716,43 @@
 									<c:when test="${vo.home eq 'doosan'}">
 										두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kia'}">
 										KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lg'}">
 										LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'hanhwa'}">
 										한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lotte'}">
 										롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nexen'}">
 										넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'sk'}">
 										SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kt'}">
 										KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'samsung'}">
 										삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nc'}">
 										NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
 											width="40">
-										</c:when>
+									</c:when>
 								</c:choose></td>
 
 							<td><c:choose>
@@ -781,15 +793,15 @@
 							<c:choose>
 								<c:when test="${tic[0] eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+1 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 								<c:when test="${tic[0]+2 eq vo.year+vo.month+vo.day}">
 									<td><a
-										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }" onClick="window.open(this.href, '', 'width=700, height=500'); return false;">예매중</a></td>
+										href="../../../test/list?home=${vo.home }&away=${vo.away }&year=${vo.year }&month=${vo.month }&day=${vo.day }&game_time=${vo.game_time }">예매중</a></td>
 								</c:when>
 							</c:choose>
 
@@ -856,43 +868,43 @@
 									<c:when test="${vo.home eq 'doosan'}">
 										두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kia'}">
 										KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lg'}">
 										LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'hanhwa'}">
 										한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lotte'}">
 										롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nexen'}">
 										넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'sk'}">
 										SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kt'}">
 										KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'samsung'}">
 										삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nc'}">
 										NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
 											width="40">
-										</c:when>
+									</c:when>
 								</c:choose></td>
 							<td><c:choose>
 									<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
@@ -997,43 +1009,43 @@
 									<c:when test="${vo.home eq 'doosan'}">
 										두산 베어스<img src="../../../resources/teamPhoto/emblem_OB.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kia'}">
 										KIA 타이거즈<img src="../../../resources/teamPhoto/emblem_HT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lg'}">
 										LG 트윈스<img src="../../../resources/teamPhoto/emblem_LG.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'hanhwa'}">
 										한화 이글스<img src="../../../resources/teamPhoto/emblem_HH.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'lotte'}">
 										롯데 자이언츠<img src="../../../resources/teamPhoto/emblem_LT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nexen'}">
 										넥센 히어로즈<img src="../../../resources/teamPhoto/emblem_WO.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'sk'}">
 										SK 와이번스<img src="../../../resources/teamPhoto/emblem_SK.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'kt'}">
 										KT 위즈<img src="../../../resources/teamPhoto/emblem_KT.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'samsung'}">
 										삼성 라이온즈<img src="../../../resources/teamPhoto/emblem_SS.png"
 											width="40">
-										</c:when>
+									</c:when>
 									<c:when test="${vo.home eq 'nc'}">
 										NC 다이노스<img src="../../../resources/teamPhoto/emblem_NC.png"
 											width="40">
-										</c:when>
+									</c:when>
 								</c:choose></td>
 							<td><c:choose>
 									<c:when test="${vo.stadium eq 'doosan 잠실야구장'}">
